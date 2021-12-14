@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Login-Form</title>
+<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="container" style="width: 500px;">
+		<div class="row" style="margin-top: 100px;">
+			<h2 class="text-center">Login</h2>
+			<div class="card">
+				<div class="card-body">
+					<div class="text-success" th:if="${isRegister}">Registration
+						successful.</div>
+					<div class="text-danger" th:if="${param.error != null}">
+						Invalid username or password.</div>
+					<div class="text-success" th:if=${param.logout}>You have been
+						logged out.</div>
+					<form th:action="@{/loginProcess}" role="form" method="POST">
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="username" class="form-label">Username</label> <input
+									type="text" class="form-control" id="username" name="username"
+									placeholder="Enter your username">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label> <input
+									type="password" class="form-control" id="password"
+									name="password" placeholder="Enter your password">
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="d-flex align-items-center justify-content-between">
+								<span class="font-size-13 text-muted"> Don't have an
+									account? <a class="small" th:href="@{/create}">
+										Registration</a>
+								</span>
+								<button type="submit" class="btn btn-primary">Sign In</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

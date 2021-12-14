@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="./common/navbar :: navbar"></div>
+	<div sec:authorize="hasRole('ROLE_USER')">
+		<div th:replace="./user/user_home :: user"></div>
+	</div>
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<div th:replace="./admin/admin_home :: admin"></div>
+	</div>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

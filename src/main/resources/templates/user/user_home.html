@@ -1,0 +1,12 @@
+<div th:fragment="user">
+	<div class="container">
+		<div class="row" style="margin-top: 15px;">
+			<div class="text-primary p-3">
+				<h5 class="text-primary">Welcome
+					[[${#authentication.getPrincipal().getName()}]] !</h5>
+				<p>You have successfully logged in. Now you can start to
+					explore!</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration-Form</title>
+<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div class="container" style="width: 500px;">
+		<div class="row" style="margin-top: 30px;">
+			<h2 class="text-center">Registration</h2>
+			<div class="card">
+				<div class="card-body">
+					<div class="text-danger" th:if="${isExist}">User already
+						register.</div>
+					<div class="text-danger" th:if="${param.error != null}">User
+						already register.</div>
+					<form th:action="@{/create}" role="form" method="POST"
+						th:object="${user}">
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="name" class="form-label">Name</label> <input
+									type="text" class="form-control" id="name" name="name"
+									placeholder="Enter your name" th:value="${user.name}"
+									th:classappend="${#fields.hasErrors('name')?'is-invalid':''}">
+								<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+									class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label> <input
+									type="email" class="form-control" id="email" name="email"
+									placeholder="Enter your email" th:value="${user.email}"
+									th:classappend="${#fields.hasErrors('email')?'is-invalid':''}">
+								<div th:each="e : ${#fields.errors('email')}" th:text="${e}"
+									class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="mobile" class="form-label">Mobile</label> <input
+									type="text" class="form-control" id="mobile" name="mobile"
+									placeholder="Enter your mobile" th:value="${user.mobile}"
+									th:classappend="${#fields.hasErrors('mobile')?'is-invalid':''}">
+								<div th:each="e : ${#fields.errors('mobile')}" th:text="${e}"
+									class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="username" class="form-label">Username</label> <input
+									type="text" class="form-control" id="username" name="username"
+									placeholder="Enter your username" th:value="${user.username}"
+									th:classappend="${#fields.hasErrors('username')?'is-invalid':''}">
+								<div th:each="e : ${#fields.errors('username')}" th:text="${e}"
+									class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label> <input
+									type="password" class="form-control" id="password"
+									name="password" placeholder="Enter your password">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="password" class="form-label">Role</label> <select
+									class="form-control" name="role"
+									th:classappend="${#fields.hasErrors('role')?'is-invalid':''}">
+									<option value="">Select Role</option>
+									<option value="USER">USER</option>
+									<option value="ADMIN">ADMIN</option>
+								</select>
+								<div th:each="e : ${#fields.errors('role')}" th:text="${e}"
+									class="invalid-feedback"></div>
+							</div>
+						</div>
+						<div class="row form-group">
+							<div class="d-flex align-items-center justify-content-between">
+								<span class="font-size-13 text-muted">You have already
+									account? <a class="small" th:href="@{/login}"> Login</a>
+								</span>
+								<button type="submit" class="btn btn-primary">Register</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>
