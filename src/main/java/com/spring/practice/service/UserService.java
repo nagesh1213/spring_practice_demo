@@ -21,4 +21,12 @@ public interface UserService {
 
 	List<User> fetchAllUsers();
 
+	Boolean updateUser(@Valid UserRequestBean bean);
+
+	User findByEmail(String email);
+
+	User findByMobile(String mobile);
+
+	User findById(Long id);
+
 }

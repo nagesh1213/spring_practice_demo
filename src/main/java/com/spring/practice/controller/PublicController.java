@@ -61,7 +61,7 @@ public class PublicController {
 			RedirectAttributes redirect) {
 		log.info("create user controller start...");
 		if (result.hasErrors()) {
-			model.addAttribute("userData", user);
+			model.addAttribute("user", user);
 			return "common/registration";
 		}
 		if (!ObjectUtils.isEmpty(user) && ObjectUtils.isEmpty(userService.isExist(user))) {

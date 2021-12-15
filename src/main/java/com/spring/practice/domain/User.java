@@ -1,6 +1,7 @@
 package com.spring.practice.domain;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -25,6 +27,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@Where(clause = "isdeleted='N' and isactive='Y'")
 @Table(name = "user_details")
 public class User implements UserDetails {
 
@@ -40,6 +43,10 @@ public class User implements UserDetails {
 	private String username;
 	private String decpassword;
 	private String role;
+	private Date createdate;
+	private Date updatedate;
+	private String isactive;
+	private String isdeleted;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore

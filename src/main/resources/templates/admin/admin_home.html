@@ -46,8 +46,9 @@
 										<td th:text="${user.role}"></td>
 										<td><span><a href="#"><button
 														class="btn btn-outline-danger" type="button">Delete</button></a></span>
-											<span><a href="#"><button
-														class="btn btn-outline-success" type="button">Edit</button></a></span></td>
+											<span><a
+												th:href="@{'/admin/fetchUserById/'+${user.id}}"><button
+														class="btn btn-outline-success" type="button">View</button></a></span></td>
 									</tr>
 								</tbody>
 							</table>
