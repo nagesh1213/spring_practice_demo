@@ -3,6 +3,7 @@ package com.spring.practice.service;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -109,10 +110,40 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 
-	
 	@Override
 	@Cacheable(value = "users")
 	public List<User> fetchAllUsers() {
 		return userRepo.findAll();
+	}
+
+	@Override
+	public Boolean updateUser(@Valid UserRequestBean bean) {
+		Optional<User> isExist = userRepo.findById(bean.getId());
+		if (isExist.isPresent()) {
+			ObjectMapper mapper = new ObjectMapper();
+			User user = mapper.convertValue(isExist.get(), User.class);
+			userRepo.save(user);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public User findByEmail(String email) {
+		return userRepo.findByEmail(email);
+	}
+
+	@Override
+	public User findByMobile(String mobile) {
+		return userRepo.findByMobile(mobile);
+	}
+
+	@Override
+	public User findById(Long id) {
+		Optional<User> user = userRepo.findById(id);
+		if (user.isPresent()) {
+			return user.get();
+		}
+		return null;
 	}
 }

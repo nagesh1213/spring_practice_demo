@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View-Details</title>
+<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+	<div th:replace="./common/navbar :: navbar"></div>
+	<div class="row" style="margin-top: 10px; margin-left: 20px;">
+		<nav class="breadcrumb breadcrumb-dash">
+			<a th:href="@{/home}" class="breadcrumb-item"> Home</a> <span
+				class="breadcrumb-item active">View Details</span>
+		</nav>
+	</div>
+	<div class="container" style="width: 500px;">
+		<div class="row" style="margin-top: 30px;">
+			<h2 class="text-center">View Details</h2>
+			<div class="card">
+				<div class="card-body">
+					<form th:action="@{/create}" role="form" method="POST"
+						th:object="${user}">
+						<div class="form-group row">
+							<div class="mb-3">
+								<input type="hidden" th:value="${user.id}" name="id" /> <label
+									for="name" class="form-label">Name</label> <input type="text"
+									class="form-control" id="name" name="name" readonly="readonly"
+									placeholder="Enter your name" th:value="${user.name}">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="email" class="form-label">Email</label> <input
+									type="email" class="form-control" id="email" name="email"
+									placeholder="Enter your email" th:value="${user.email}"
+									readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="mobile" class="form-label">Mobile</label> <input
+									type="text" class="form-control" id="mobile" name="mobile"
+									placeholder="Enter your mobile" th:value="${user.mobile}"
+									readonly="readonly">
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="mb-3">
+								<label for="password" class="form-label">Role</label> <select
+									class="form-control" name="role" disabled="disabled">
+									<option value="${user.role}" th:text="${user.role}"></option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" th:src="@{/assets/js/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"></script>
+</body>
+</html>

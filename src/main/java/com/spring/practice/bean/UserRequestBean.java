@@ -16,6 +16,7 @@ public class UserRequestBean implements Serializable {
 
 	private static final long serialVersionUID = 4310048071638217241L;
 
+	private Long id;
 	@NotBlank(message = "Name must be filled out..!!")
 	private String name;
 	@NotBlank(message = "Email must be filled out..!!")
