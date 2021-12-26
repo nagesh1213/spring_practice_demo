@@ -1,23 +1,16 @@
 package com.spring.practice.controller;
 
 import java.security.Principal;
-import java.util.List;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.spring.practice.bean.UserRequestBean;
 import com.spring.practice.domain.User;
 import com.spring.practice.service.UserService;
 
@@ -61,6 +54,7 @@ public class AdminController {
 					return "admin/view_user";
 				}
 			}
+			
 			return "redirect:/home";
 		}
 		return "redirect:/logout_user";
