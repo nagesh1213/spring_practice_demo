@@ -1,6 +1,7 @@
 package com.spring.practice.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -30,20 +31,17 @@ public class AdminController {
 	@Autowired
 	private UserService service;
 
-	@PutMapping("/updateUser")
-	public String updateUser(@Valid @ModelAttribute("user") UserRequestBean bean, BindingResult result, Model model,
+	@GetMapping("/deleteUserById/{id}")
+	public String deleteUserById(@PathVariable(value = "id", required = false) Long id, Model model,
 			Principal principal, RedirectAttributes redirect) {
-		log.info("updating user....");
+		log.info("deleting user....");
 		User user = service.findByUsername(principal.getName());
 		if (!ObjectUtils.isEmpty(user)) {
-			model.addAttribute("userData", bean);
-			if (result.hasErrors()) {
-				return "admin/view_user";
-			}
-			Boolean isUpdated = service.updateUser(bean);
-			if (isUpdated.booleanValue()) {
-				redirect.addFlashAttribute("isUpdatedMsg", true);
-				log.info("User isUpdated : {} ", isUpdated);
+			if (id != null) {
+				Boolean isDeleted = service.deleteUserById(id);
+				if (isDeleted.booleanValue()) {
+					redirect.addFlashAttribute("deleted", true);
+				}
 				return "redirect:/home";
 			}
 		}

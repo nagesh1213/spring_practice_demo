@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Cacheable(value = "users")
+//	@Cacheable(value = "users")
 	public List<User> fetchAllUsers() {
 		return userRepo.findAll();
 	}
@@ -145,5 +145,17 @@ public class UserServiceImpl implements UserService {
 			return user.get();
 		}
 		return null;
+	}
+
+	@Override
+	public Boolean deleteUserById(Long id) {
+		Optional<User> user = userRepo.findById(id);
+		if (user.isPresent()) {
+			user.get().setIsdeleted("Y");
+			user.get().setUpdatedate(new Date());
+			userRepo.save(user.get());
+			return true;
+		}
+		return false;
 	}
 }
